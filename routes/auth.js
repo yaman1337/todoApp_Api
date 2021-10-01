@@ -10,13 +10,13 @@ router.post('/signup', (req, res) => {
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
-            return res.status(422).json({ error: "All fields are required" });
+            return res.status(400).json({ error: "All fields are required" });
         }
         else {
             User.findOne({ email })
                 .then(isUser => {
                     if (isUser) {
-                        return res.status(422).json({ error: "Email already exists." });
+                        return res.status(400).json({ error: "Email already exists." });
                     }
                     else {
                         bcrypt.hash(password, 12)
@@ -46,13 +46,13 @@ router.post('/login', (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            return res.status(422).json({ error: "Please add email or password." })
+            return res.status(400).json({ error: "Please add email or password." })
         }
         else {
             User.findOne({ email: email })
                 .then(savedUser => {
                     if (!savedUser) {
-                        return res.status(422).json({ error: "Invalid email or password" })
+                        return res.status(403).json({ error: "Invalid email or password" })
                     }
                     else {
                         bcrypt.compare(password, savedUser.password)
