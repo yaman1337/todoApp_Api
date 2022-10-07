@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    env_file: .env
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:6.0.2-focal
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=todo
+volumes:
+  mongo_data:
