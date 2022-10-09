@@ -1,4 +1,4 @@
-# This is Simple TODO api written in Nodejs express .
+# A Simple TODO api written in Nodejs express .
 
 # REST API for Todo App
 
