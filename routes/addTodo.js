@@ -23,7 +23,8 @@ router.post("/add", isLoggedIn, async (req, res) => {
       })
       .catch((err) => console.log(err));
   } catch (err) {
-    throw err;
+    console.log(err)
+    res.status(500).json({error: "Something went wrong."})
   }
 });
 
@@ -36,7 +37,8 @@ router.get("/", isLoggedIn, (req, res) => {
         res.status(200).json(data);
       });
   } catch (err) {
-    console.log(err);
+    console.log(err)
+    res.status(500).json({error: "Something went wrong."})
   }
 });
 
@@ -50,7 +52,8 @@ router.delete("/delete/:id", isLoggedIn, async (req, res) => {
       res.status(200).json({ message: "Successfully deleted." });
     });
   } catch (err) {
-    throw err;
+    console.log(err)
+    res.status(500).json({error: "Something went wrong."})
   }
 });
 
