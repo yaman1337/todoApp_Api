@@ -5,3 +5,8 @@
 ### Made with Express Js and MongoDb.
 
 ### Check endpoints.txt
+
+To run this in your own pc:
+--> Fork this repo
+-->Clone this
+--> Install and run in your pc
